@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html ng-app="MainApp">
+    <head>
+        <title>Custom – UIKIT</title>
+        <meta charset="utf-8"/>
+        <meta name=viewport content="width=device-width, initial-scale=1">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="css/uikit.css">
+        <link rel="stylesheet" type="text/css" href="css/custom.css">
+        <!-- jQuery and Javascript Libraries -->
+        <script src="js/jquery.js"></script>
+        <script src="js/moment.js"></script>
+
+        <!-- AngularJS App and Components -->
+        <script src="js/angular.min.js"></script>
+        <script src="app/app.js"></script>
+
+        <script src="app/components/common/commonComponent.js"></script>
+        <script src="app/components/newsTable/newsTableComponent.js"></script>
+        <script src="app/controllers/main.js"></script>
+    </head>
+    <body class="uk-background-default" ng-controller="MainController">
+        <div class="uk-container" style="padding-top: 100px;" news-table-panel>
+            <table style="width: 100%;" class="uk-table uk-table-small uk-table-divider uk-table-middle">
+                <thead>
+                    <tr>
+                        <th style="color: #000;background: transparent;">Date</th>
+                        <th style="color: #000;background: transparent;">Title</th>
+                        <th style="color: #000;background: transparent;">Summary</th>
+                        <th style="color: #000;background: transparent;">Score</th>
+                        <th style="color: #000;background: transparent;">Author</th>
+                        <th style="color: #000;background: transparent;">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="newsItem in newsPanel.data track by newsItem._id + $index">
+                        <td ng-bind="newsItem.pub_date | date_time"></td>
+                        <td ng-bind="newsItem.headline.main"></td>
+                        <td>
+                            <p ng-bind="newsItem.snippet"></p>
+                        </td>
+                        <td>
+                            <span class="score" ng-bind="newsItem.score"></span>
+                        </td>
+                        <td>
+                            <i ng-bind="newsItem.byline.original"></i>
+                        </td>
+                        <td>
+                            <a href="{{ newsItem.web_url }}">Read more</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="uk-container" style="padding-top: 100px;"></div>
+        <script src="js/uikit.js"></script>
+        <script src="js/uikit-icons.js"></script>
+    </body>
+</html>
